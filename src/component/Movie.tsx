@@ -29,9 +29,20 @@ export function Movies() {
         <h1 className="text-7xl font-bold  text-black">Movies</h1>
       </div>
       <div className="">
-        <input className="border-2" type="text" placeholder="search movie" />
+        <input
+          className="border-2"
+          type="text"
+          value={movieTitle}
+          onChange={(e) => setMovieTitle(e.target.value)}
+          placeholder="search movie"
+        />
         <input className="border-2" type="text" placeholder="search by date" />
-        <button className=" bg-slate-400 px-5 py-2">Search</button>
+        <button
+          onClick={() => handleTitleSearch()}
+          className=" bg-slate-400 px-5 py-2"
+        >
+          Search
+        </button>
       </div>
 
       <h2 className="">Movies To Watch</h2>
