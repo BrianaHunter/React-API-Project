@@ -21,9 +21,9 @@ export function Movies() {
       <ul>
         {movies.map((movieList) => (
           <li key={movieList.title}>
-            <h2>{movieList.title}</h2>
-            <p>{movieList.release_date}</p>
-            <p>{movieList.vote_average}</p>
+            <h2>Title: {movieList.title}</h2>
+            <p>Release Date: {movieList.release_date}</p>
+            <p>Rating: {movieList.vote_average}</p>
           </li>
         ))}
       </ul>
