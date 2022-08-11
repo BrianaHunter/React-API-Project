@@ -1,10 +1,11 @@
 import axios from "axios";
+import { config } from "../config";
 import { FilterMovies } from "../types";
 
 export function fetchMovieData() {
   return axios
     .get<FilterMovies[]>(
-      "https://api.themoviedb.org/3/movie/550api_key=8089c024c707abbe7859b5b0f4671d05"
+      `https://api.themoviedb.org/3/discover/movie?api_key=${config.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
     )
     .then((response) => response);
 }
