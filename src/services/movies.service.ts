@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from "../config";
-import { FilterMovies } from "../types";
+import { FilterMovies, MovieResults } from "../types";
 
 export function fetchMovieData() {
   return axios

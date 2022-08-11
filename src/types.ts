@@ -1,5 +1,11 @@
+export interface MovieResults {
+  data: {
+    results: FilterMovies[];
+  };
+}
+
 export interface FilterMovies {
-  rating: number;
-  genre: string;
-  length: number;
+  title: string;
+  voteAverage: number;
+  releaseDate: string;
 }
