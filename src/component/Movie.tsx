@@ -1,9 +1,11 @@
 import { FilterMovies, MovieResults } from "../types";
-import { fetchMovieData } from "../services/movies.service";
+import { fetchMovieByTitle, fetchMovieData } from "../services/movies.service";
 import { useEffect, useState } from "react";
 
 export function Movies() {
   const [movies, setMovies] = useState<FilterMovies[]>([]);
+  const [movie, setMovie] = useState<FilterMovies>();
+  const [movieTitle, setMovieTitle] = useState("");
 
   useEffect(() => {
     getAllMovies();
@@ -15,6 +17,11 @@ export function Movies() {
       setMovies(response.data.results);
     });
   }
+
+  function handleTitleSearch() {
+    fetchMovieByTitle(movieTitle).then((response) => setMovie(response.data));
+  }
+
   return (
     <div>
       <div className="flex justify-center">
