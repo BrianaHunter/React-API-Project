@@ -1,11 +1,9 @@
 export interface MovieResults {
-  data: {
-    results: FilterMovies[];
-  };
+  results: FilterMovies[];
 }
 
 export interface FilterMovies {
   title: string;
-  voteAverage: number;
-  releaseDate: string;
+  vote_average: number;
+  release_date: string;
 }

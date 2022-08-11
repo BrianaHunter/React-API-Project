@@ -11,7 +11,8 @@ export function Movies() {
 
   function getAllMovies() {
     fetchMovieData().then((response) => {
-      setMovies(response.data);
+      console.log(response.data);
+      setMovies(response.data.results);
     });
   }
   return (
@@ -21,8 +22,8 @@ export function Movies() {
         {movies.map((movieList) => (
           <li key={movieList.title}>
             <h2>{movieList.title}</h2>
-            <p>{movieList.releaseDate}</p>
-            <p>{movieList.voteAverage}</p>
+            <p>{movieList.release_date}</p>
+            <p>{movieList.vote_average}</p>
           </li>
         ))}
       </ul>
