@@ -18,13 +18,13 @@ export function Movies() {
     <div>
       <h1>Movies</h1>
       <ul>
-        {/* {movies.map((movieList) => (
+        {movies.map((movieList) => (
           <li key={movieList.title}>
             <h2>{movieList.title}</h2>
             <p>{movieList.releaseDate}</p>
             <p>{movieList.voteAverage}</p>
           </li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );
