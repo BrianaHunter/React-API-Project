@@ -7,7 +7,7 @@ import { MovieResults, FilterMovies } from "../types";
 
 interface MovieContextModel {
   movieList: MovieResults[];
-  addMovie: (movie: FilterMovies) => void;
+  addMovie: (movie: MovieResults) => void;
   removeMovie: (title: string) => void;
 }
 
@@ -31,7 +31,7 @@ export function MovieContextProvider({ children }: Props) {
     setMovieList([movie, ...movieList]);
   }
 
-  function deleteTodo(title: string) {
+  function removeMovie(title: string) {
     setMovieList(movieList.filter((movie) => movie.results !== movie.results));
   }
 
