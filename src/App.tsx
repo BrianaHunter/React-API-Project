@@ -1,13 +1,13 @@
 import "./App.css";
 import { Movies } from "./component/Movie";
 import React from "react";
-import SearchMovie from "./component/SearchMovie";
+import Details from "./pages/Details";
 
 function App() {
   return (
     <div className="App">
-      <SearchMovie />
       <Movies />
+      {/* <Details /> */}
     </div>
   );
 }

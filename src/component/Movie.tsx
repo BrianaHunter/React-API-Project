@@ -8,8 +8,10 @@ export function Movies() {
   const [movieTitle, setMovieTitle] = useState("");
 
   useEffect(() => {
-    getAllMovies();
-  }, []);
+    if (movieTitle === "") {
+      getAllMovies();
+    }
+  }, [movieTitle]);
 
   function getAllMovies() {
     fetchMovieData().then((response) => {
@@ -18,39 +20,54 @@ export function Movies() {
     });
   }
 
-  function handleTitleSearch() {
-    fetchMovieByTitle(movieTitle).then((response) => setMovie(response.data));
+  function handleSearchMovie() {
+    console.log("SearchMovie");
+    fetchMovieByTitle(movieTitle).then((response) => {
+      console.log(response);
+      setMovies(response.data.results);
+    });
   }
 
   return (
-    <div>
+    <div className="">
       <div className="flex justify-center">
         <h1 className="text-7xl font-bold  text-green-400">GET.</h1>
         <h1 className="text-7xl font-bold  text-black">Movies</h1>
       </div>
-      <div className="">
+
+      <div className="w-200 h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
         <input
-          className="border-2"
+          className="appearance-none w-full outline-none focus:outline-none active:outline-none"
           type="text"
           value={movieTitle}
           onChange={(e) => setMovieTitle(e.target.value)}
-          placeholder="search movie"
+          placeholder="Search movies by name..."
         />
-        <input className="border-2" type="text" placeholder="search by date" />
+
         <button
-          onClick={() => handleTitleSearch()}
-          className=" bg-slate-400 px-5 py-2"
+          onClick={() => handleSearchMovie()}
+          className="ml-1 outline-none focus:outline-none active:outline-none"
         >
-          Search
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            className="w-6 h-6"
+          >
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
         </button>
       </div>
-
-      <h2 className="">Movies To Watch</h2>
-
-      <div>
-        <ul>
+      <div className=" m-7 table-c justify-around  ">
+        <ul className="space-y-4 md:space-y-0 md:grid grid-cols-4 gap-4 ">
           {movies.map((movieList) => (
-            <li key={movieList.title}>
+            <li
+              className=" rounded-xl shadow-md p-10 space-y-4 h-70"
+              key={movieList.title}
+            >
               <div className="">
                 <h3>Title: {movieList.title}</h3>
                 <p>Rating: {movieList.vote_average}</p>
@@ -58,6 +75,9 @@ export function Movies() {
 
               <p>Release Date: {movieList.release_date}</p>
               <img src={movieList.poster_path} />
+              <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
+                More Detail
+              </button>
             </li>
           ))}
         </ul>
