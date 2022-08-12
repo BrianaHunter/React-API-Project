@@ -69,15 +69,24 @@ export function Movies() {
               key={movieList.title}
             >
               <div className="">
-                <h3>Title: {movieList.title}</h3>
+                <h3 className="font-bold truncate">{movieList.title}</h3>
                 <p>Rating: {movieList.vote_average}</p>
               </div>
 
-              <p>Release Date: {movieList.release_date}</p>
-              <img src={movieList.poster_path} />
-              <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
-                More Detail
-              </button>
+              <p> {movieList.release_date}</p>
+              <img
+                src={
+                  "https://image.tmdb.org/t/p/original/" + movieList.poster_path
+                }
+              />
+              <div className="flex justify-between">
+                <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
+                  More Detail
+                </button>
+                <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
+                  +
+                </button>
+              </div>
             </li>
           ))}
         </ul>
