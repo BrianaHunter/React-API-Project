@@ -62,7 +62,7 @@ export function Movies() {
         </button>
       </div>
       <div className=" m-7 table-c justify-around  ">
-        <ul className="space-y-4 md:space-y-0 md:grid grid-cols-4 gap-4 ">
+        <ul className="space-y-4 sm:grid sm:grid-cols-2 md:space-y-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies.map((movieList) => (
             <li
               className=" rounded-xl shadow-md p-10 space-y-4 h-70"
