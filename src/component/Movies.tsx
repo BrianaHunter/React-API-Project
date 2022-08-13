@@ -6,6 +6,7 @@ export function Movies() {
   const [movies, setMovies] = useState<FilterMovies[]>([]);
   const [movie, setMovie] = useState<FilterMovies>();
   const [movieTitle, setMovieTitle] = useState("");
+  const [showMovies, setShowMovies] = useState(false);
 
   useEffect(() => {
     if (movieTitle === "") {
@@ -27,17 +28,20 @@ export function Movies() {
       setMovies(response.data.results);
     });
   }
+  function showList() {
+    setShowMovies(true);
+  }
 
   return (
     <div className="">
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <h1 className="text-7xl font-bold  text-green-400">GET.</h1>
         <h1 className="text-7xl font-bold  text-black">Movies</h1>
       </div>
 
       <div className="w-200 h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
         <input
-          className="appearance-none w-full outline-none focus:outline-none active:outline-none"
+          className="appearance-none w-200 outline-none focus:outline-none active:outline-none"
           type="text"
           value={movieTitle}
           onChange={(e) => setMovieTitle(e.target.value)}
