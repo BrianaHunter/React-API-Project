@@ -1,12 +1,18 @@
 import { FilterMovies, MovieResults } from "../types";
 import { fetchMovieByTitle, fetchMovieData } from "../services/movies.service";
 import { useEffect, useState } from "react";
+import Modal from "react-modal";
+import { IconX } from "@tabler/icons";
+
+Modal.setAppElement("#root");
 
 export function Movies() {
   const [movies, setMovies] = useState<FilterMovies[]>([]);
   const [movie, setMovie] = useState<FilterMovies>();
   const [movieTitle, setMovieTitle] = useState("");
   const [showMovies, setShowMovies] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  //KJ - added in show details useState to incorporate modal to have details pop up
 
   useEffect(() => {
     if (movieTitle === "") {
@@ -31,6 +37,12 @@ export function Movies() {
   function showList() {
     setShowMovies(true);
   }
+
+  function closeModal() {
+    setShowDetails(false);
+  }
+  //setting up closing the modal
+  //added an onClick on the show details button in the return calling setShowDetails
 
   return (
     <div className="">
@@ -84,9 +96,23 @@ export function Movies() {
                 }
               />
               <div className="flex justify-between">
-                <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
+                <button
+                  onClick={() => setShowDetails(true)}
+                  className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
+                >
                   More Detail
                 </button>
+                <Modal
+                  isOpen={showDetails}
+                  onRequestClose={closeModal}
+                  contentLabel="Post Form Modal"
+                >
+                  <IconX
+                    size={25}
+                    className="close-button"
+                    onClick={closeModal}
+                  />
+                </Modal>
                 <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
                   +
                 </button>
