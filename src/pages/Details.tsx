@@ -1,5 +1,5 @@
 import React from "react";
-import FilterMovies from "../component/FilterMovies";
+import FilterMovies from "../component/SearchBy";
 import movie from "../data/movies.data";
 
 export default function Details() {

@@ -1,4 +1,4 @@
-import { FilterMovies, MovieResults } from "../types";
+import { Movie, MovieResults } from "../types";
 import { fetchMovieByTitle, fetchMovieData } from "../services/movies.service";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
@@ -7,8 +7,8 @@ import { IconX } from "@tabler/icons";
 Modal.setAppElement("#root");
 
 export function Movies() {
-  const [movies, setMovies] = useState<FilterMovies[]>([]);
-  const [movie, setMovie] = useState<FilterMovies>();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movie, setMovie] = useState<Movie>();
   const [movieTitle, setMovieTitle] = useState("");
   const [showMovies, setShowMovies] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
