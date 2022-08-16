@@ -3,7 +3,7 @@
 //setmovies function to update full list of movies that you show to user
 
 import { createContext, useState } from "react";
-import { MovieResults, FilterMovies } from "../types";
+import { MovieResults, Movie } from "../types";
 
 interface MovieContextModel {
   movieList: MovieResults[];
