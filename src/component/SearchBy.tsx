@@ -62,41 +62,43 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
     });
   }
 
-  // useEffect(() => {
-  //   if (ratings) {
-  //     handleRating();
-  //   }
-  // }, []);
-
   return (
     <div>
-      <div className="w-200 h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
-        <input
-          className="appearance-none w-200 outline-none focus:outline-none active:outline-none"
-          type="text"
-          value={movieTitle}
-          onChange={(e) => setMovieTitle(e.target.value)}
-          placeholder="Search movies by name..."
-        />
+      <div className="">
+        <div className="w-200 h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+          <input
+            className="appearance-none w-200 outline-none focus:outline-none active:outline-none"
+            type="text"
+            value={movieTitle}
+            onChange={(e) => setMovieTitle(e.target.value)}
+            placeholder="Search movies by name..."
+          />
 
-        <button
-          onClick={() => handleSearchMovie()}
-          className="ml-1 outline-none focus:outline-none active:outline-none"
-        >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            className="w-6 h-6"
+          <button
+            onClick={() => handleSearchMovie()}
+            className="ml-1 outline-none focus:outline-none active:outline-none"
           >
-            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </button>
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              className="w-6 h-6"
+            >
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+        </div>
+        {/* <div
+          className="w-0 h-0 
+   border-l-[15px] border-l-transparent
+   border-t-[15px] border-t-white
+   border-r-[15px] border-r-transparent
+    "
+        ></div> */}
       </div>
-
       {/* <div>
           <p>Search by genre</p>
 
@@ -111,20 +113,26 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </div>
           ))}
         </div> */}
-
-      <div>
-        <Box sx={{ width: "100%", padding: 5, margin: 0 }}>
-          <p>Search by rating</p>
-          <Slider
-            getAriaLabel={() => "Movie rating"}
-            value={valueRatings}
-            onChange={handleChange}
-            min={0}
-            max={10}
-            valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
-          />
-        </Box>
+      <div className="flex justify-start border-2 border-red-600">
+        <div>
+          <Box sx={{ width: "600px", padding: 5, margin: 0 }}>
+            <p className="text-white">Search by rating</p>
+            <Slider
+              getAriaLabel={() => "Movie rating"}
+              value={valueRatings}
+              onChange={handleChange}
+              min={0}
+              max={10}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+            />
+          </Box>
+        </div>
+        <div>
+          <button className="bg-green-500 px-10 text-white rounded">
+            Filter
+          </button>
+        </div>
       </div>
     </div>
   );

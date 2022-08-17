@@ -13,4 +13,8 @@ code {
 }
 @tailwind base;
 @tailwind components;
+@font-face {
+  font-family: "Lemon Days";
+  src: local("Lemon Days"), url(./fonts/Lemon-Days.ttf) format("ttf");
+}
 @tailwind utilities;
