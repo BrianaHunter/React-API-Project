@@ -1,14 +1,11 @@
 import { Slider } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
-import movie from "../data/movies.data";
 import {
   fetchFilteredMovies,
   fetchMovieByTitle,
-  fetchMovieData,
 } from "../services/movies.service";
-import { Movie, MovieFilter, MovieResults } from "../types";
-import { Movies } from "./Movies";
+import { Movie } from "../types";
 import Box from "@mui/material/Box";
 
 interface Props {
@@ -20,6 +17,7 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
   const [genre, setGenre] = useState([]);
   const [valueRatings, setValueRatings] = React.useState<number[]>([0, 10]);
   const [movieTitle, setMovieTitle] = useState("");
+  const [openFilter, setOpenFilter] = useState(false);
 
   useEffect(() => {
     if (movieTitle === "") {
@@ -61,7 +59,12 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
       setMovies(response.data.results);
     });
   }
-
+  function showFilter() {
+    setOpenFilter(true);
+  }
+  function hideFilter() {
+    setOpenFilter(false);
+  }
   return (
     <div>
       <div className="">
@@ -71,7 +74,7 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             type="text"
             value={movieTitle}
             onChange={(e) => setMovieTitle(e.target.value)}
-            placeholder="Search movies by name..."
+            placeholder="Search movies by title..."
           />
 
           <button
@@ -89,6 +92,15 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             >
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
+          </button>
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={showFilter}
+            onDoubleClick={hideFilter}
+            className="bg-blue-900 px-20 text-white rounded"
+          >
+            Filter more
           </button>
         </div>
         {/* <div
@@ -113,27 +125,28 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </div>
           ))}
         </div> */}
-      <div className="flex justify-start border-2 border-red-600">
-        <div>
-          <Box sx={{ width: "600px", padding: 5, margin: 0 }}>
-            <p className="text-white">Search by rating</p>
-            <Slider
-              getAriaLabel={() => "Movie rating"}
-              value={valueRatings}
-              onChange={handleChange}
-              min={0}
-              max={10}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
-            />
-          </Box>
+      {openFilter === true && (
+        <div className="border-2 border-red-600">
+          <div>
+            <Box className=" w-600 p-5 m-0">
+              <p className="text-white m-0">Search by rating</p>
+              <div className="flex justify-between">
+                <Slider
+                  // className="w-200"
+                  getAriaLabel={() => "Movie rating"}
+                  value={valueRatings}
+                  onChange={handleChange}
+                  min={0}
+                  max={10}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
+                <button className="bg-green-500 px-2 rounded">Go</button>
+              </div>
+            </Box>
+          </div>
         </div>
-        <div>
-          <button className="bg-green-500 px-10 text-white rounded">
-            Filter
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
