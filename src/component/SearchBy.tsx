@@ -60,11 +60,9 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
     });
   }
   function showFilter() {
-    setOpenFilter(true);
+    setOpenFilter(!openFilter);
   }
-  function hideFilter() {
-    setOpenFilter(false);
-  }
+
   return (
     <div>
       <div className="">
@@ -97,7 +95,6 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
         <div className="flex justify-center">
           <button
             onClick={showFilter}
-            onDoubleClick={hideFilter}
             className="bg-blue-900 px-20 text-white rounded"
           >
             Filter more
