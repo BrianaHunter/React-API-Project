@@ -3,6 +3,7 @@ export interface MovieResults {
 }
 
 export interface Movie {
+  id: number;
   title: string;
   vote_average: number;
   release_date: string;

@@ -8,16 +8,18 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import SearchBy from "./SearchBy";
+import Details from "../pages/Details";
 
 Modal.setAppElement("#root");
 
 export function Movies() {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [movie, setMovie] = useState<Movie>();
-  const [movieTitle, setMovieTitle] = useState("");
   const [showMovies, setShowMovies] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  //KJ - added in show details useState to incorporate modal to have details pop up
+  const [selectedMovie, setSelectedMovie] = useState<Movie>();
+  //use find method- create function that will take in movie id and find more in array then set movie to selected movie - onclick on more details button
+
+  function displayMovieDetails() {}
 
   function getAllMovies() {
     fetchMovieData().then((response) => {
@@ -96,6 +98,7 @@ export function Movies() {
                     className="close-button"
                     onClick={closeModal}
                   />
+                  <Details />
                 </Modal>
                 <button className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white">
                   +
