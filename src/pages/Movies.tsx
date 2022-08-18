@@ -19,6 +19,7 @@ import {
 } from "react-router-dom";
 import WatchListPage from "./WatchList";
 import movie from "../data/movies.data";
+import GetMoviesLogo from "../images/GetMoviesLogo.svg";
 
 Modal.setAppElement("#root");
 
@@ -60,24 +61,20 @@ export function Movies() {
 
   return (
     <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
-      <div className="flex justify-center pt-10">
-        <h1 className="font-['Luckiest Guy', cursive] text-9xl font-bold  text-green-400">
-          GET.
-        </h1>
-        <h1 className="font-['Luckiest Guy', cursive] text-9xl font-bold  text-white">
-          Movies
-        </h1>
-      </div>
-
-      <header className="p-4">
+      <header className="pr-10 pt-10 flex justify-end">
         <Link to="/watch-list">
           <button className="py-2 px-4 bg-green-500 text-white rounded">
             Watch List
           </button>
         </Link>
       </header>
-
-      <div className="">
+      <div className="flex justify-center">
+        <img
+          className="w-[500px] md:w-[900px] h-[200px] md:h-[350px] p-0 m-0"
+          src={GetMoviesLogo}
+        />
+      </div>
+      <div>
         <SearchBy setMovies={setMovies} getAllMovies={getAllMovies} />
       </div>
 

@@ -4,6 +4,7 @@ import { Movie } from "../types";
 import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import { Link } from "react-router-dom";
+import WatchListLogo from "../images/WatchListLogo.svg";
 
 interface MovieProps {
   movieItems: Movie;
@@ -24,18 +25,16 @@ export default function WatchListPage() {
     <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
       <header className="p-4">
         <Link to="/">
-          <button className="py-2 px-4 bg-green-500 text-white rounded">
+          <button className="py-1 px-3 bg-green-500 text-white rounded">
             Home
           </button>
         </Link>
       </header>
-      <div className="flex justify-center pt-10">
-        <h1 className="font-['Luckiest Guy', cursive] text-9xl font-bold  text-green-400">
-          Watch
-        </h1>
-        <h1 className="font-['Luckiest Guy', cursive] text-9xl font-bold  text-white">
-          List
-        </h1>
+      <div className="flex justify-center">
+        <img
+          className="w-[500px] md:w-[800px] h-[300px] md:h-[400px] "
+          src={WatchListLogo}
+        />
       </div>
 
       <div className=" m-7 table-c justify-around  ">

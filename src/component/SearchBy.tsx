@@ -66,9 +66,9 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
   return (
     <div>
       <div className="">
-        <div className="w-200 h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+        <div className="w-100% h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
           <input
-            className="appearance-none w-200 outline-none focus:outline-none active:outline-none"
+            className="appearance-none w-100% outline-none focus:outline-none active:outline-none"
             type="text"
             value={movieTitle}
             onChange={(e) => setMovieTitle(e.target.value)}
@@ -92,23 +92,41 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </svg>
           </button>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-end">
           <button
             onClick={showFilter}
-            className="bg-blue-900 px-20 text-white rounded"
+            className="bg-blue-900 px-10 mr-10 text-white rounded"
           >
-            Filter more
+            Filter
           </button>
         </div>
-        {/* <div
-          className="w-0 h-0 
-   border-l-[15px] border-l-transparent
-   border-t-[15px] border-t-white
-   border-r-[15px] border-r-transparent
-    "
-        ></div> */}
       </div>
-      {/* <div>
+
+      {openFilter === true && (
+        <div className="border-2 border-red-600">
+          <div className="">
+            <Box className=" p-10">
+              <p className="text-white m-0">Search by rating</p>
+              <div className="">
+                <Slider
+                  getAriaLabel={() => "Movie rating"}
+                  value={valueRatings}
+                  onChange={handleChange}
+                  min={0}
+                  max={10}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
+                <button
+                  onClick={() => handleFilteredSearch()}
+                  className="bg-green-500 px-2 rounded"
+                >
+                  Go
+                </button>
+              </div>
+            </Box>
+          </div>
+          {/* <div>
           <p>Search by genre</p>
 
           {genre.map((genreListings) => (
@@ -122,26 +140,6 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </div>
           ))}
         </div> */}
-      {openFilter === true && (
-        <div className="border-2 border-red-600">
-          <div>
-            <Box className=" w-600 p-5 m-0">
-              <p className="text-white m-0">Search by rating</p>
-              <div className="flex justify-between">
-                <Slider
-                  // className="w-200"
-                  getAriaLabel={() => "Movie rating"}
-                  value={valueRatings}
-                  onChange={handleChange}
-                  min={0}
-                  max={10}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                />
-                <button className="bg-green-500 px-2 rounded">Go</button>
-              </div>
-            </Box>
-          </div>
         </div>
       )}
     </div>
