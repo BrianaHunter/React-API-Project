@@ -60,13 +60,6 @@ export function Movies() {
 
   return (
     <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
-      <header className="p-4">
-        <Link to="/watch-list">
-          <button className="py-2 px-4 bg-green-500 text-white rounded">
-            Watch List
-          </button>
-        </Link>
-      </header>
       <div className="flex justify-center pt-10">
         <h1 className="font-['Luckiest Guy', cursive] text-9xl font-bold  text-green-400">
           GET.
@@ -75,6 +68,14 @@ export function Movies() {
           Movies
         </h1>
       </div>
+
+      <header className="p-4">
+        <Link to="/watch-list">
+          <button className="py-2 px-4 bg-green-500 text-white rounded">
+            Watch List
+          </button>
+        </Link>
+      </header>
 
       <div className="">
         <SearchBy setMovies={setMovies} getAllMovies={getAllMovies} />
