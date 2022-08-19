@@ -6,33 +6,19 @@ import { Movies } from "../pages/Movies";
 import movie from "../data/movies.data";
 import { defaultMaxListeners } from "events";
 
-export default function Details() {
-  const [details, setDetails] = useState<Movie[]>([]);
-  const { watchList, addMovie, removeMovie } = useContext(WatchListContext);
-  const [showDetails, setShowDetails] = useState(false);
+interface Props {
+  movie: Movie;
+}
 
-  const [deets, setDeets] = useState<Movie>({
-    id: 0,
-    title: "",
-    vote_average: 0,
-    release_date: "",
-    poster_path: "",
-    overview: "",
-  });
-
-  function getAllMovies() {
-    fetchMovieData().then((response) => {
-      console.log(response.data);
-      setDetails(response.data.results);
-    });
-  }
-
+//movie prop you pass into it, use the title and stuff to display
+export default function Details({ movie }: Props) {
   return (
     <div>
       <form>
         <div className="input title-input-container">
           <label htmlFor="title">Title</label>
-          <p>{}</p>
+          <img></img>
+          <p>{movie.title}</p>
 
           {/* <input
             id="title"

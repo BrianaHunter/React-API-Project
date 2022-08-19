@@ -20,12 +20,13 @@ import {
 import WatchListPage from "./WatchList";
 import movie from "../data/movies.data";
 import GetMoviesLogo from "../images/GetMoviesLogo.svg";
+import Details from "../component/Details";
 
 Modal.setAppElement("#root");
 
 export function Movies() {
   const [movies, setMovies] = useState<Movie[]>([]);
-  // const [movie, setMovie] = useState<Movie>();
+  const [selectedMovie, setSelectedMovie] = useState<Movie>({} as Movie);
   // const [movieTitle, setMovieTitle] = useState("");
   const [showMovies, setShowMovies] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -51,6 +52,11 @@ export function Movies() {
     setShowDetails(false);
   }
 
+  function showMovieDetails(movie: Movie) {
+    setSelectedMovie(movie);
+    setShowDetails(true);
+  }
+
   const navigate = useNavigate();
 
   function goToWatchListPage() {
@@ -58,7 +64,7 @@ export function Movies() {
   }
   //setting up closing the modal
   //added an onClick on the show details button in the return calling setShowDetails
-
+  console.log("selctedMovie: ", selectedMovie);
   return (
     <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
       <header className="pr-10 pt-10 flex justify-end">
@@ -108,7 +114,7 @@ export function Movies() {
               />
               <div className="flex justify-between">
                 <button
-                  onClick={() => setShowDetails(true)}
+                  onClick={() => showMovieDetails(movie)}
                   className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white"
                 >
                   More Detail
@@ -123,7 +129,7 @@ export function Movies() {
                     className="close-button"
                     onClick={closeModal}
                   />
-                  ;dkfhr;eiwjfwejkflawealk
+                  <Details movie={selectedMovie} />
                 </Modal>
                 <button
                   onClick={() => addMovie(movie)}
