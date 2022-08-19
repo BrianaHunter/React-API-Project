@@ -15,8 +15,8 @@ export default function Details({ movie }: Props) {
   return (
     <div>
       <form>
-        <div className="input title-input-container">
-          <label htmlFor="title">Title</label>
+        <div>
+          {/* <label htmlFor="title">Title</label> */}
           <img></img>
           <p>{movie.title}</p>
 

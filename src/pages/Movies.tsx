@@ -1,26 +1,33 @@
 import { Movie, MovieFilter, MovieResults } from "../types";
-import {
-  // fetchFilteredMovies,
-  // fetchMovieByTitle,
-  fetchMovieData,
-} from "../services/movies.service";
-import { useEffect, useState, useContext } from "react";
+import { fetchMovieData } from "../services/movies.service";
+import { useEffect, useState, useContext, Fragment } from "react";
 import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import SearchBy from "../component/SearchBy";
 import { WatchListContext } from "../context/WatchListContext";
-import {
-  Routes,
-  Route,
-  Link,
-  Navigate,
-  NavLink,
-  useNavigate,
-} from "react-router-dom";
-import WatchListPage from "./WatchList";
-import movie from "../data/movies.data";
+import { Link, useNavigate } from "react-router-dom";
 import GetMoviesLogo from "../images/GetMoviesLogo.svg";
 import Details from "../component/Details";
+// import Dialog from "@mui/material/Dialog";
+import { Dialog, Transition } from "@headlessui/react";
+
+const customStyles = {
+  content: {
+    // top: "20%",
+    // left: "50%",
+    // right: "auto",
+    // bottom: "auto",
+    // marginRight: "-50%",
+    // transform: "translate(-50%, -50%)",
+    // width: "100%",
+    // height: "100%",
+    // padding: "50px",
+    // background: "#79c5e8",
+    // border: "2px solid black",
+    // background: "transparent",
+    backgroundImage: "linear-gradient(to top left, var(--tw-gradient-stops))",
+  },
+};
 
 Modal.setAppElement("#root");
 
@@ -119,10 +126,71 @@ export function Movies() {
                 >
                   More Detail
                 </button>
-                <Modal
+                <Transition appear show={showDetails} as={Fragment}>
+                  <Dialog
+                    as="div"
+                    className="relative z-10"
+                    onClose={closeModal}
+                  >
+                    <Transition.Child
+                      as={Fragment}
+                      enter="ease-out duration-300"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="ease-in duration-200"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <div className="fixed inset-0 bg-blue-900 bg-opacity-5" />
+                    </Transition.Child>
+                    <div className="fixed inset-0 overflow-y-auto">
+                      <div className="flex min-h-full items-center justify-center p-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <Dialog.Panel className="w-full max-w-5xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              Movie Details
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <p className="text-sm text-gray-500">
+                                Your payment has been successfully submitted.
+                                We’ve sent you an email with all of the details
+                                of your order.
+                              </p>
+                            </div>
+                            <div className="mt-4">
+                              <button
+                                type="button"
+                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                onClick={closeModal}
+                              >
+                                Got it, thanks!
+                              </button>
+                            </div>
+                          </Dialog.Panel>
+                        </Transition.Child>
+                      </div>
+                    </div>
+                  </Dialog>
+                </Transition>
+                {/* <Dialog onClose={closeModal} open={showDetails} fullScreen>
+                  <Details movie={selectedMovie} />
+                </Dialog> */}
+                {/* <Modal
                   isOpen={showDetails}
                   onRequestClose={closeModal}
                   contentLabel="Post Form Modal"
+                  style={customStyles}
                 >
                   <IconX
                     size={25}
@@ -130,7 +198,7 @@ export function Movies() {
                     onClick={closeModal}
                   />
                   <Details movie={selectedMovie} />
-                </Modal>
+                </Modal> */}
                 <button
                   onClick={() => addMovie(movie)}
                   className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
