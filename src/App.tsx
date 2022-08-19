@@ -1,7 +1,7 @@
 import "./App.css";
 import { Movies } from "./pages/Movies";
 import React from "react";
-import Details from "./pages/Details";
+import Details from "./component/Details";
 import SearchBy from "./component/SearchBy";
 // import { Link } from "@mui/material";
 import WatchListPage from "./pages/WatchList";

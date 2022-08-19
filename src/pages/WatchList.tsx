@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import { Link } from "react-router-dom";
 import WatchListLogo from "../images/WatchListLogo.svg";
+import Details from "../component/Details";
 
 interface MovieProps {
   movieItems: Movie;

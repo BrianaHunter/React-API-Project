@@ -123,6 +123,7 @@ export function Movies() {
                     className="close-button"
                     onClick={closeModal}
                   />
+                  ;dkfhr;eiwjfwejkflawealk
                 </Modal>
                 <button
                   onClick={() => addMovie(movie)}
