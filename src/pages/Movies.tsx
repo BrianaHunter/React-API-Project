@@ -10,6 +10,7 @@ import GetMoviesLogo from "../images/GetMoviesLogo.svg";
 import Details from "../component/Details";
 // import Dialog from "@mui/material/Dialog";
 import { Dialog, Transition } from "@headlessui/react";
+import { moveEmitHelpers } from "typescript";
 
 const customStyles = {
   content: {
@@ -38,7 +39,6 @@ export function Movies() {
   const [showMovies, setShowMovies] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const { addMovie, watchList } = useContext(WatchListContext);
-  //KJ - added in show details useState to incorporate modal to have details pop up
 
   function isMovieInWatchList(movie: Movie) {
     return watchList.includes(movie);
@@ -163,9 +163,16 @@ export function Movies() {
                             </Dialog.Title>
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
-                                Your payment has been successfully submitted.
-                                sent you an email with all of the details of
-                                your order.
+                                <div>
+                                  {/* <img
+                                    className=" shadow-lg rounded-md "
+                                    src={
+                                      "https://image.tmdb.org/t/p/original/" +
+                                      movie.poster_path
+                                    }
+                                  /> */}
+                                </div>
+                                <div>{showDetails}</div>
                               </p>
                             </div>
                             <div className="mt-4">

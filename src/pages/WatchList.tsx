@@ -81,16 +81,36 @@ export default function WatchListPage() {
                   Remove
                 </button>
               </div>
+
               <Modal
                 isOpen={showDetails}
                 onRequestClose={closeModal}
                 contentLabel="Post Form Modal"
+                className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
               >
                 <IconX
                   size={25}
                   className="close-button"
                   onClick={closeModal}
                 />
+                <div className="flex column">
+                  <div>
+                    <img
+                      className=" w-[500]  h-[500] p-0 m-0"
+                      src={
+                        "https://image.tmdb.org/t/p/original/" +
+                        movie.poster_path
+                      }
+                    />
+                  </div>
+
+                  <div className="">
+                    <p className="">{movie.title}</p>
+                    <p> {movie.vote_average}</p>
+                    <p> {movie.release_date}</p>
+                    <p>{movie.overview}</p>
+                  </div>
+                </div>
               </Modal>
             </li>
           ))}
