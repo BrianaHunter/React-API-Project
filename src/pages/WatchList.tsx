@@ -15,11 +15,18 @@ Modal.setAppElement("#root");
 
 export default function WatchListPage() {
   const { watchList, addMovie, removeMovie } = useContext(WatchListContext);
-  const [showMovies, setShowMovies] = useState(false);
+  const [showWatchlistMovie, setShowWatchlistMovie] = useState<Movie>(
+    {} as Movie
+  );
   const [showDetails, setShowDetails] = useState(false);
 
   function closeModal() {
     setShowDetails(false);
+  }
+
+  function showWatchlistDetail(movie: Movie) {
+    setShowWatchlistMovie(movie);
+    setShowDetails(true);
   }
 
   return (
@@ -69,7 +76,7 @@ export default function WatchListPage() {
 
               <div className="flex justify-between">
                 <button
-                  onClick={() => setShowDetails(true)}
+                  onClick={() => showWatchlistDetail(movie)}
                   className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white"
                 >
                   More Detail
@@ -81,41 +88,35 @@ export default function WatchListPage() {
                   Remove
                 </button>
               </div>
-
-              <Modal
-                isOpen={showDetails}
-                onRequestClose={closeModal}
-                contentLabel="Post Form Modal"
-                className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
-                //styling on 89 breaks code - won't remove first in list until all are removed, then it readds them back
-              >
-                <IconX
-                  size={25}
-                  className="close-button"
-                  onClick={closeModal}
-                />
-                <div className="flex column">
-                  <div>
-                    <img
-                      className=" w-[500]  h-[500] p-0 m-0"
-                      src={
-                        "https://image.tmdb.org/t/p/original/" +
-                        movie.poster_path
-                      }
-                    />
-                  </div>
-
-                  <div className="">
-                    <p className="">{movie.title}</p>
-                    <p> {movie.vote_average}</p>
-                    <p> {movie.release_date}</p>
-                    <p>{movie.overview}</p>
-                  </div>
-                </div>
-              </Modal>
             </li>
           ))}
         </ul>
+        <Modal
+          isOpen={showDetails}
+          onRequestClose={closeModal}
+          contentLabel="Post Form Modal"
+          className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
+        >
+          <IconX size={25} className="close-button" onClick={closeModal} />
+          <div className="flex column">
+            <div>
+              <img
+                className=" w-[500]  h-[500] p-0 m-0"
+                src={
+                  "https://image.tmdb.org/t/p/original/" +
+                  showWatchlistMovie.poster_path
+                }
+              />
+            </div>
+
+            <div className="">
+              <p className="">{showWatchlistMovie.title}</p>
+              <p> {showWatchlistMovie.vote_average}</p>
+              <p> {showWatchlistMovie.release_date}</p>
+              <p>{showWatchlistMovie.overview}</p>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );

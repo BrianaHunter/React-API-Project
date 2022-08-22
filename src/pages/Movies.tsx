@@ -126,7 +126,7 @@ export function Movies() {
                 >
                   More Detail
                 </button>
-                <Transition appear show={showDetails} as={Fragment}>
+                {/* <Transition appear show={showDetails} as={Fragment}>
                   <Dialog
                     as="div"
                     className="relative z-10"
@@ -164,19 +164,13 @@ export function Movies() {
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
                                 <div>
-                                  {/* <img
-                                    className=" shadow-lg rounded-md "
-                                    src={
-                                      "https://image.tmdb.org/t/p/original/" +
-                                      movie.poster_path
-                                    }
-                                  /> */}
+                                
                                   {selectedMovie.title}
                                   {selectedMovie.vote_average}
                                   {selectedMovie.release_date}
                                   {selectedMovie.overview}
                                 </div>
-                                {/* <div>{showDetails}</div> */}
+                               
                               </p>
                             </div>
                             <div className="mt-4">
@@ -193,23 +187,11 @@ export function Movies() {
                       </div>
                     </div>
                   </Dialog>
-                </Transition>
+                </Transition> */}
                 {/* <Dialog onClose={closeModal} open={showDetails} fullScreen>
                   <Details movie={selectedMovie} />
                 </Dialog> */}
-                {/* <Modal
-                  isOpen={showDetails}
-                  onRequestClose={closeModal}
-                  contentLabel="Post Form Modal"
-                  style={customStyles}
-                >
-                  <IconX
-                    size={25}
-                    className="close-button"
-                    onClick={closeModal}
-                  />
-                  <Details movie={selectedMovie} />
-                </Modal> */}
+
                 <button
                   onClick={() => addMovie(movie)}
                   className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
@@ -220,6 +202,33 @@ export function Movies() {
             </li>
           ))}
         </ul>
+        <Modal
+          className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
+          isOpen={showDetails}
+          onRequestClose={closeModal}
+          contentLabel="Post Form Modal"
+          style={customStyles}
+        >
+          <IconX size={25} className="close-button" onClick={closeModal} />
+          <div className="flex column">
+            <div>
+              <img
+                className=" w-[500]  h-[500] p-0 m-0"
+                src={
+                  "https://image.tmdb.org/t/p/original/" +
+                  selectedMovie.poster_path
+                }
+              />
+            </div>
+
+            <div className="">
+              <p className="">{selectedMovie.title}</p>
+              <p> {selectedMovie.vote_average}</p>
+              <p> {selectedMovie.release_date}</p>
+              <p>{selectedMovie.overview}</p>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );

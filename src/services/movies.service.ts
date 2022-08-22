@@ -39,3 +39,8 @@ export function fetchFilteredMovies(filter: MovieFilter) {
 export function fetchGenres(id: number) {
   return axios.get<MovieResults>(``);
 }
+
+// https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+
+// https://developers.themoviedb.org/3/discover/movie-discover
+//when filtering - use with genre - will return movies of that genre
