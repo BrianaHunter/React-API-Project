@@ -99,9 +99,8 @@ export default function WatchListPage() {
         >
           <IconX size={25} className="close-button" onClick={closeModal} />
           <div className="flex column">
-            <div>
+            <div className="p-5 m-0">
               <img
-                className=" w-[500]  h-[500] p-0 m-0"
                 src={
                   "https://image.tmdb.org/t/p/original/" +
                   showWatchlistMovie.poster_path
@@ -109,11 +108,11 @@ export default function WatchListPage() {
               />
             </div>
 
-            <div className="">
-              <p className="">{showWatchlistMovie.title}</p>
-              <p> {showWatchlistMovie.vote_average}</p>
-              <p> {showWatchlistMovie.release_date}</p>
-              <p>{showWatchlistMovie.overview}</p>
+            <div className="p-5 m-0">
+              <p className="p-2">{showWatchlistMovie.title}</p>
+              <p className="p-2"> {showWatchlistMovie.vote_average}</p>
+              <p className="p-2"> {showWatchlistMovie.release_date}</p>
+              <p className="p-2">{showWatchlistMovie.overview}</p>
             </div>
           </div>
         </Modal>

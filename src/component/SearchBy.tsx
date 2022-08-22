@@ -64,9 +64,9 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
   }
 
   return (
-    <div>
+    <div className="">
       <div className="">
-        <div className="w-100% h-10 m-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative">
+        <div className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between">
           <input
             className="appearance-none w-100% outline-none focus:outline-none active:outline-none"
             type="text"
@@ -92,20 +92,22 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </svg>
           </button>
         </div>
-        <div className="flex justify-end">
-          <button
-            onClick={showFilter}
-            className="bg-blue-900 px-10 mr-10 text-white rounded"
-          >
-            Filter
-          </button>
+        <div className="flex justify-center p-5">
+          <div className="">
+            <button
+              onClick={showFilter}
+              className="bg-blue-900 px-10 py-2 text-white rounded"
+            >
+              Filter
+            </button>
+          </div>
         </div>
       </div>
 
       {openFilter === true && (
-        <div className="border-2 border-red-600">
+        <div className="m-2">
           <div className="">
-            <Box className=" p-10">
+            <Box className="p-0.5">
               <p className="text-white m-0">Search by rating</p>
               <div className="">
                 <Slider
