@@ -163,16 +163,20 @@ export function Movies() {
                             </Dialog.Title>
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
-                                {/* <div> */}
-                                {/* <img
+                                <div>
+                                  {/* <img
                                     className=" shadow-lg rounded-md "
                                     src={
                                       "https://image.tmdb.org/t/p/original/" +
                                       movie.poster_path
                                     }
-                                  />
+                                  /> */}
+                                  {selectedMovie.title}
+                                  {selectedMovie.vote_average}
+                                  {selectedMovie.release_date}
+                                  {selectedMovie.overview}
                                 </div>
-                                <div>{showDetails}</div> */}
+                                {/* <div>{showDetails}</div> */}
                               </p>
                             </div>
                             <div className="mt-4">

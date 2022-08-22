@@ -86,7 +86,7 @@ export default function WatchListPage() {
                 isOpen={showDetails}
                 onRequestClose={closeModal}
                 contentLabel="Post Form Modal"
-                // className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
+                className="bg-gradient-to-tl from-black via-blue-900 to-black text-white"
                 //styling on 89 breaks code - won't remove first in list until all are removed, then it readds them back
               >
                 <IconX
