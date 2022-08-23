@@ -1,12 +1,14 @@
 import { Slider } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import {
   fetchFilteredMovies,
   fetchMovieByTitle,
+  fetchMovieData,
 } from "../services/movies.service";
 import { Movie } from "../types";
 import Box from "@mui/material/Box";
+import { WatchListContext } from "../context/WatchListContext";
 
 interface Props {
   setMovies: (movies: Movie[]) => void;
@@ -18,6 +20,10 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
   const [valueRatings, setValueRatings] = React.useState<number[]>([0, 10]);
   const [movieTitle, setMovieTitle] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
+  const [moviesPopular, setMoviesPopular] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie>({} as Movie);
+  const [showDetails, setShowDetails] = useState(false);
+  const { addMovie, watchList } = useContext(WatchListContext);
 
   useEffect(() => {
     if (movieTitle === "") {
@@ -50,6 +56,13 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
     });
   }
 
+  function getPopularMovies() {
+    fetchMovieData().then((response) => {
+      console.log(response.data);
+      setMovies(response.data.results);
+    });
+  }
+
   function handleFilteredSearch() {
     fetchFilteredMovies({
       rating_lte: valueRatings[1],
@@ -61,6 +74,11 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
   }
   function showFilter() {
     setOpenFilter(!openFilter);
+  }
+
+  function showMovieDetails(movie: Movie) {
+    setSelectedMovie(movie);
+    setShowDetails(true);
   }
 
   return (
@@ -92,15 +110,19 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
             </svg>
           </button>
         </div>
-        <div className="flex justify-center p-5">
-          <div className="">
-            <button
-              onClick={showFilter}
-              className="bg-blue-900 px-10 py-2 text-white rounded"
-            >
-              Filter
-            </button>
-          </div>
+        <div className="flex justify-between align-center p-5">
+          <button
+            onClick={showFilter}
+            className="bg-green-500 px-10 py-2 text-white rounded"
+          >
+            Get Movie Ratings ⭐️
+          </button>
+          <button
+            onClick={getPopularMovies}
+            className="bg-green-500 px-10 py-2 text-white rounded"
+          >
+            Get Popular Movies 🍿
+          </button>
         </div>
       </div>
 
@@ -127,6 +149,56 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
                 </button>
               </div>
             </Box>
+          </div>
+          <div className=" m-7 table-c justify-around  ">
+            <ul className="space-y-4 sm:grid sm:grid-cols-2 md:space-y-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {moviesPopular.map((popular) => (
+                <li
+                  className=" rounded-xl shadow-md p-10 space-y-4 h-70"
+                  key={popular.title}
+                >
+                  <div className="">
+                    <h2 className="text-xl font-bold truncate text-white">
+                      {popular.title}
+                    </h2>
+                  </div>
+                  <div className="flex">
+                    <svg
+                      className="w-5 h-5 text-yellow-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <p className="text-white">{popular.vote_average}</p>
+                  </div>
+                  {/* <p className="text-white"> {movieList.release_date}</p> */}
+                  <img
+                    className=" shadow-lg rounded-md "
+                    src={
+                      "https://image.tmdb.org/t/p/original/" +
+                      popular.poster_path
+                    }
+                  />
+                  <div className="flex justify-between">
+                    <button
+                      onClick={() => showMovieDetails(popular)}
+                      className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white"
+                    >
+                      More Detail
+                    </button>
+
+                    <button
+                      onClick={() => addMovie(popular)}
+                      className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
+                    >
+                      +
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
           {/* <div>
           <p>Search by genre</p>
