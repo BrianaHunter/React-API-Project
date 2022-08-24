@@ -17,8 +17,6 @@ export function WatchListContextProvider({ children }: Props) {
       setWatchList([...watchList, movie]);
     }
   };
-  //KJ- you now can't select more than one of the same movie to go in the watchlist
-  //ayyyopoooooooo!
 
   const removeMovie = (title: string) => {
     const movieIndex = watchList.findIndex(

@@ -13,7 +13,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <WatchListContextProvider>
-        <App />
+        <div className="bg-gradient-to-tl from-black via-blue-900 to-black h-full w-full">
+          <App />
+        </div>
       </WatchListContextProvider>
     </BrowserRouter>
   </React.StrictMode>

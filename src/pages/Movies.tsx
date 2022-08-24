@@ -1,16 +1,12 @@
-import { Movie, MovieFilter, MovieResults } from "../types";
+import { Movie } from "../types";
 import { fetchMovieData } from "../services/movies.service";
-import { useEffect, useState, useContext, Fragment } from "react";
+import { useState, useContext } from "react";
 import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import SearchBy from "../component/SearchBy";
 import { WatchListContext } from "../context/WatchListContext";
 import { Link, useNavigate } from "react-router-dom";
 import GetMoviesLogo from "../images/GetMoviesLogo.svg";
-import Details from "../component/Details";
-// import Dialog from "@mui/material/Dialog";
-import { Dialog, Transition } from "@headlessui/react";
-import { moveEmitHelpers } from "typescript";
 
 const customStyles = {
   content: {
@@ -38,14 +34,13 @@ Modal.setAppElement("#root");
 export function Movies() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie>({} as Movie);
-  // const [movieTitle, setMovieTitle] = useState("");
   const [showMovies, setShowMovies] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const { addMovie, watchList } = useContext(WatchListContext);
 
-  function isMovieInWatchList(movie: Movie) {
-    return watchList.includes(movie);
-  }
+  // function isMovieInWatchList(movie: Movie) {
+  //   return watchList.includes(movie);
+  // }
 
   function getAllMovies() {
     fetchMovieData().then((response) => {
@@ -54,9 +49,9 @@ export function Movies() {
     });
   }
 
-  function showList() {
-    setShowMovies(true);
-  }
+  // function showList() {
+  //   setShowMovies(true);
+  // }
 
   function closeModal() {
     setShowDetails(false);
@@ -67,19 +62,18 @@ export function Movies() {
     setShowDetails(true);
   }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  function goToWatchListPage() {
-    navigate("/watch-list");
-  }
-  //setting up closing the modal
-  //added an onClick on the show details button in the return calling setShowDetails
+  // function goToWatchListPage() {
+  //   navigate("/watch-list");
+  // }
+
   console.log("selctedMovie: ", selectedMovie);
   return (
-    <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
+    <div>
       <div className="flex justify-end p-5">
         <Link to="/watch-list">
-          <button className="py-2 px-4 bg-green-500 text-white rounded">
+          <button className="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700 selection:bg-gray-200">
             Watch List
           </button>
         </Link>
@@ -121,7 +115,7 @@ export function Movies() {
                 </svg>
                 <p className="text-white">{movie.vote_average}</p>
               </div>
-              {/* <p className="text-white"> {movieList.release_date}</p> */}
+
               <img
                 className=" shadow-lg rounded-md "
                 src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
@@ -129,14 +123,14 @@ export function Movies() {
               <div className="flex justify-between">
                 <button
                   onClick={() => showMovieDetails(movie)}
-                  className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white"
+                  className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white hover:bg-green-700"
                 >
                   More Detail
                 </button>
 
                 <button
                   onClick={() => addMovie(movie)}
-                  className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
+                  className=" border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white hover:bg-green-700"
                 >
                   +
                 </button>

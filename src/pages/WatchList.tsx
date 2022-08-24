@@ -5,7 +5,6 @@ import Modal from "react-modal";
 import { IconX } from "@tabler/icons";
 import { Link } from "react-router-dom";
 import WatchListLogo from "../images/WatchListLogo.svg";
-import Details from "../component/Details";
 
 interface MovieProps {
   movieItems: Movie;
@@ -51,10 +50,10 @@ export default function WatchListPage() {
   }
 
   return (
-    <div className="bg-gradient-to-tl from-black via-blue-900 to-black">
+    <div>
       <header className="flex justify-end p-5">
         <Link to="/">
-          <button className="py-1 px-3 bg-green-500 text-white rounded">
+          <button className="py-1 px-3 bg-green-500 text-white rounded hover:bg-green-700">
             Home
           </button>
         </Link>
@@ -89,7 +88,6 @@ export default function WatchListPage() {
                 </svg>
                 <p className="text-white">{movie.vote_average}</p>
               </div>
-              {/* <p className="text-white"> {movieList.release_date}</p> */}
               <img
                 className=" shadow-lg rounded-md "
                 src={"https://image.tmdb.org/t/p/original/" + movie.poster_path}
@@ -98,13 +96,13 @@ export default function WatchListPage() {
               <div className="flex justify-between">
                 <button
                   onClick={() => showWatchlistDetail(movie)}
-                  className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white"
+                  className=" shadow-lg border-2 rounded-sm border-none bg-green-500 px-3 py-1 text-white hover:bg-green-700"
                 >
                   More Detail
                 </button>
                 <button
                   onClick={() => removeMovie(movie.title)}
-                  className="border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white"
+                  className="border-2 rounded-sm border-none bg-green-400 px-3 py-1 text-white hover:bg-green-700"
                 >
                   Remove
                 </button>

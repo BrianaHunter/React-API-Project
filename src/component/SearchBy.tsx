@@ -40,14 +40,6 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
     setValueRatings(newValue as number[]);
   };
 
-  // function handleSearch() {
-  //   if (movieTitle === "") {
-  //     handleFilteredSearch();
-  //   } else {
-  //     handleSearchMovie();
-  //   }
-  // }
-
   function handleSearchMovie() {
     console.log("SearchMovie");
     fetchMovieByTitle(movieTitle).then((response) => {
@@ -173,7 +165,6 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
                     </svg>
                     <p className="text-white">{popular.vote_average}</p>
                   </div>
-                  {/* <p className="text-white"> {movieList.release_date}</p> */}
                   <img
                     className=" shadow-lg rounded-md "
                     src={
@@ -200,20 +191,6 @@ export default function SearchBy({ setMovies, getAllMovies }: Props) {
               ))}
             </ul>
           </div>
-          {/* <div>
-          <p>Search by genre</p>
-
-          {genre.map((genreListings) => (
-            <div>
-              <input onChange={checkedGenre} type="checkbox" value="" />
-              <input onChange={checkedGenre} type="checkbox" value="" />
-              <input onChange={checkedGenre} type="checkbox" value="" />
-              <input onChange={checkedGenre} type="checkbox" value="" />
-              <input onChange={checkedGenre} type="checkbox" value="" />
-              <input onChange={checkedGenre} type="checkbox" value="" />
-            </div>
-          ))}
-        </div> */}
         </div>
       )}
     </div>

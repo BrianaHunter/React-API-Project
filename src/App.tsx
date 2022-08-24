@@ -17,7 +17,7 @@ import {
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-gradient-to-tl from-black via-blue-900 to-black w-ful h-full">
       <Routes>
         <Route path="/watch-list" element={<WatchListPage />} />
         <Route path="/" element={<Movies />} />
